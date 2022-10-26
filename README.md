@@ -24,3 +24,23 @@ Any() 메서드는 컬렉션 타입으로부터 Enumerator를 생성하고 MoveN
 이예 따라 Count나 Length를 바로 검사하는 것보다 오버헤드가 더 발생합니다.
 
 단, 프로퍼티로 제공되는 Count가 아니라 Linq 확장 메서드 Count()를 쓰면 비용이 더 발생하니 주의합니다.
+
+## 미신
+
+### TryGetComponent 가 성능이 더 좋다.
+공식 문서에 언급되는 장점은 에디터에서 할당이 발생하지 않는 것이다.
+하지만 유니티 코리아 엔지니어에게 문의한 결과, 아래 코드들은 플레이어 빌드에서 성능 차이가 없는 것으로 나온다.
+
+```
+if(!TryGetComponent<Component>(out _))
+{
+    Debug.Log("comp is null");
+}
+```
+
+```
+if(GetComponent<Component>() == null)
+{
+    Debug.Log("comp is null");
+}
+```

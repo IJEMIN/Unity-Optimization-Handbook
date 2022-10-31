@@ -17,6 +17,31 @@
 ### TryGetComponent() 메서드 사용하기
 유니티 에디터에서 TryGetComponent() 메서드는 찾으려는 타입의 컴포넌트가 게임 오브젝트에 없다면 할당을 발생시키지 않는다.
 
+### 로그 통제
+문자열 string 생성은 할당을 발생시킵니다. 따라서 Debug.Log() 등 로그 함수에 문자열을 전달하는 과정에서 할당이 발생합니다.
+플레이어 설정에서 로그 출력 여부를 조정할 수 있지만, 이는 로그 메서드의 입력에 문자열을 전달하면서 발생하는 할당을 제거하는 효과는 없습니다.
+
+다만 개발 편의상 로그는 반드시 필요하기 때문에,  릴리즈 빌드에서 출력할 로그 수준을 결정한 다음, Conditional 전처리기로 묶어 랩핑한 버전의 Log() 메서드를 구현해서 사용합니다.
+예를 들어 Log와 Warning 단계만 릴리즈 빌드에서 걷어낼 것이라면 다음과 같이 랩핑한 메서드를 만들어 사용할 수 있습니다.
+
+아래 메서드들은 유니티 에디터(UNITY_EDITOR) 또는 개발자용 디버그 심볼(DEVELOPMENT_BUILD)이 활성화된 빌드에서만 존재하며, 이외의 경우 스트립되어 사라집니다.
+따라서 해당 메서드들을 부르면서 생기는 오버헤드가 제거됩니다.
+
+```
+[Conditional("UNITY_EDITOR"), Conditional("DEVELOPMENT_BUILD")]
+public static void Log(string log, Object context)
+{
+    UnityEngine.Debug.Log(log, context);
+}
+
+[Conditional("UNITY_EDITOR"), Conditional("DEVELOPMENT_BUILD")]
+public static void LogWarning(string log, Object context)
+{
+    UnityEngine.Debug.LogWarning(log, context);
+}
+```
+
+
 ## LINQ
 
 ### Any() 보단 Count나 Length를 쓰자.

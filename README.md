@@ -1,5 +1,11 @@
-# Unity-Optimization-Handbook
+# 유니티 최적화 핸드북 (한국어) Unity Optimization Handbook (Korean)
 유니티 최적화 핸드북 입니다. 당분간은 한국어로만 쓰여짐.
+
+## 프로젝트 설정
+
+### Metal API Validation
+Xcode를 통해 GPU 프로파일링을 하는 과정에서 사용합니다.
+따라서 XCode의 Instruments 등을 통해 GPU를 자세히 프로파일링 하지 않는 경우 의미없으므로 해제하는 것이 미세한 오버헤드를 제거하는데 도움이 됩니다.
 
 
 ## 게임 오브젝트

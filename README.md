@@ -32,6 +32,12 @@ Xcode를 통해 GPU 프로파일링을 하는 과정에서 사용합니다.
 
 ## 할당
 
+### Enum의 ToString() 캐싱하기
+Enum.ToString()의 성능 오버헤드를 막기 위해 필요하다면 캐싱된 string을 반환하는 확장 메서드를 사용. 이러한 확장 메서드를 자동 생성해주는 패키지도 있다.
+
+- https://www.meziantou.net/caching-enum-tostring-to-improve-performance.htm
+- https://www.nuget.org/packages/Meziantou.Framework.FastEnumToStringGenerator/
+
 ### 랜더러의 materials 또는 material 접근을 줄인다
 Renderer 컴포넌트에서 현재 사용중인 머티리얼 인스턴스들은 materials를 통해 접근할 수 있다.
 하지만 이 프러퍼티를 통해 머티리얼 목록을 접근할떄마다 할당이 일어난다.

@@ -137,3 +137,8 @@ if(GetComponent<Component>() == null)
     Debug.Log("comp is null");
 }
 ```
+
+
+### enum을 Dictionary의 키로 사용하면 할당이 일어난다.
+IEqualityComparer가 특정되지 않는 타입을 딕셔너리의 키로 사용하면 비교하는 과정에서 ObjectEquilaityComparer가 사용되면서 벨류타입의 경우 박싱이 일어난다.
+하지만 유니티에서 활성화활 수 있는 닷넷 버전이 4.x 가 되면서 Dictionary의 키로 사용된 enum 비교에서 EnumEquilityComparer가 사용되면서 이 문제는 더이상 유효하지 않다.
